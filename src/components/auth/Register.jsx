@@ -1,4 +1,3 @@
-// src/components/auth/Register.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -72,7 +71,7 @@ const Register = () => {
       const response = await api.post('/users/register/', formData);
       localStorage.setItem('token', response.data.tokens.access);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      
+
       if (response.data.user.user_type === 'CLIENT') {
         navigate('/client/dashboard');
       } else {
@@ -288,8 +287,8 @@ const Register = () => {
   };
 
   return (
-    <Box 
-      sx={{ 
+    <Box
+      sx={{
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -303,9 +302,9 @@ const Register = () => {
             <Grid item xs={12} md={5}>
               <Fade in timeout={1000}>
                 <Box sx={{ color: 'white', pr: 4 }}>
-                  <Typography 
-                    variant="h2" 
-                    gutterBottom 
+                  <Typography
+                    variant="h2"
+                    gutterBottom
                     sx={{ fontWeight: 700 }}
                   >
                     Join Sweekar
@@ -322,7 +321,7 @@ const Register = () => {
                     size="large"
                     endIcon={<ArrowForward />}
                     onClick={() => navigate('/login')}
-                    sx={{ 
+                    sx={{
                       mt: 2,
                       borderColor: 'white',
                       color: 'white',
@@ -341,9 +340,9 @@ const Register = () => {
 
           <Grid item xs={12} md={7}>
             <Fade in timeout={1000}>
-              <Paper 
+              <Paper
                 elevation={24}
-                sx={{ 
+                sx={{
                   p: 4,
                   borderRadius: 4,
                   backdropFilter: 'blur(20px)',
@@ -351,8 +350,8 @@ const Register = () => {
                 }}
               >
                 <Box sx={{ mb: 4, textAlign: 'center' }}>
-                  <Typography 
-                    variant="h4" 
+                  <Typography
+                    variant="h4"
                     gutterBottom
                     sx={{ fontWeight: 700 }}
                   >
@@ -364,16 +363,16 @@ const Register = () => {
                 </Box>
 
                 {error && (
-                  <Alert 
-                    severity="error" 
+                  <Alert
+                    severity="error"
                     sx={{ mb: 3, borderRadius: 2 }}
                   >
                     {error}
                   </Alert>
                 )}
 
-                <Stepper 
-                  activeStep={activeStep} 
+                <Stepper
+                  activeStep={activeStep}
                   alternativeLabel
                   sx={{ mb: 4 }}
                 >
@@ -386,7 +385,7 @@ const Register = () => {
 
                 <form onSubmit={activeStep === steps.length - 1 ? handleSubmit : undefined}>
                   {getStepContent(activeStep)}
-                  
+
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
                     <Button
                       disabled={activeStep === 0}

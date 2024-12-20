@@ -1,4 +1,3 @@
-// src/components/auth/OTPVerificationDialog.jsx
 import { useState, useEffect } from 'react';
 import {
   Dialog,
@@ -60,8 +59,8 @@ const OTPVerificationDialog = ({ open, onClose, phone, onVerificationComplete })
   };
 
   return (
-    <Dialog 
-      open={open} 
+    <Dialog
+      open={open}
       onClose={onClose}
       maxWidth="sm"
       fullWidth
@@ -98,8 +97,8 @@ const OTPVerificationDialog = ({ open, onClose, phone, onVerificationComplete })
             {countdown > 0 ? (
               `Resend OTP in ${countdown}s`
             ) : (
-              <Button 
-                onClick={handleResendOTP} 
+              <Button
+                onClick={handleResendOTP}
                 disabled={!canResend}
               >
                 Resend OTP
@@ -112,7 +111,7 @@ const OTPVerificationDialog = ({ open, onClose, phone, onVerificationComplete })
         <Button onClick={onClose}>
           Cancel
         </Button>
-        <Button 
+        <Button
           variant="contained"
           onClick={handleVerifyOTP}
           disabled={otp.length !== 6}

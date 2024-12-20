@@ -41,26 +41,19 @@ function App() {
               <Navbar />
               <div style={{ flex: 1, paddingBottom: '20px' }}>
                 <Routes>
-                  {/* Public Routes */}
                   <Route path="/login" element={
                     isAuthenticated ? <Navigate to="/dashboard" /> : <Login />
                   } />
                   <Route path="/register" element={
                     isAuthenticated ? <Navigate to="/dashboard" /> : <Register />
                   } />
-                  
-                  {/* Landing Page */}
                   <Route path="/" element={<LandingPage />} />
-
-                  {/* Navigation Menu Routes */}
                   <Route path="/services" element={<ServicesPage />} />
                   <Route path="/experts" element={<ExpertsPage />} />
                   <Route path="/centres" element={<CentresPage />} />
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/resources" element={<ResourcesPage />} />
                   <Route path="/contact" element={<ContactPage />} />
-
-                  {/* Dynamic Dashboard Redirect */}
                   <Route
                     path="/dashboard"
                     element={
@@ -76,7 +69,6 @@ function App() {
                     }
                   />
 
-                  {/* Client Routes */}
                   <Route
                     path="/client/dashboard"
                     element={
@@ -94,7 +86,6 @@ function App() {
                     }
                   />
 
-                  {/* Professional Routes */}
                   <Route
                     path="/professional/dashboard"
                     element={
@@ -112,7 +103,6 @@ function App() {
                     }
                   />
 
-                  {/* Consultation Routes */}
                   <Route
                     path="/consultations"
                     element={
@@ -137,8 +127,6 @@ function App() {
                       </AuthGuard>
                     }
                   />
-
-                  {/* Catch all route - redirect to home */}
                   <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
               </div>

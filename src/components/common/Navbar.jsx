@@ -1,5 +1,4 @@
-// src/components/common/Navbar.jsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -28,14 +27,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 const navItems = [
-    { label: "Services", path: "/services" },
-    { label: "Experts", path: "/experts" },
-    { label: "Centres", path: "/centres" },
-    { label: "Blog", path: "/blog" },
-    { label: "Resources", path: "/resources" },
-    { label: "Reach Us", path: "/contact" },
-  ];
-  
+  { label: "Services", path: "/services" },
+  { label: "Experts", path: "/experts" },
+  { label: "Centres", path: "/centres" },
+  { label: "Blog", path: "/blog" },
+  { label: "Resources", path: "/resources" },
+  { label: "Reach Us", path: "/contact" },
+];
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -87,8 +86,8 @@ const Navbar = () => {
       </Box>
       <List>
         {navItems.map((item) => (
-          <ListItem 
-            button 
+          <ListItem
+            button
             key={item.label}
             onClick={() => {
               navigate(item.path);
@@ -96,9 +95,9 @@ const Navbar = () => {
             }}
             sx={{ py: 1.5 }}
           >
-            <ListItemText 
-              primary={item.label} 
-              sx={{ 
+            <ListItemText
+              primary={item.label}
+              sx={{
                 '& .MuiListItemText-primary': {
                   fontSize: '1.1rem',
                   fontWeight: 500,
@@ -126,9 +125,9 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar 
-        position="fixed" 
-        sx={{ 
+      <AppBar
+        position="fixed"
+        sx={{
           backgroundColor: trigger ? 'rgba(157, 132, 183, 0.95)' : 'transparent',
           backdropFilter: trigger ? 'blur(10px)' : 'none',
           boxShadow: trigger ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none',
@@ -137,16 +136,15 @@ const Navbar = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Toolbar 
-            sx={{ 
+          <Toolbar
+            sx={{
               minHeight: trigger ? '64px !important' : '80px !important',
               transition: 'all 0.3s ease-in-out',
-              justifyContent: 'space-between', // This ensures space between items
-              padding: '0 !important', // Remove default padding
+              justifyContent: 'space-between',
+              padding: '0 !important',
             }}
           >
             {isMobile ? (
-              // Mobile Layout
               <>
                 <IconButton
                   color="inherit"
@@ -156,12 +154,12 @@ const Navbar = () => {
                 >
                   <MenuIcon />
                 </IconButton>
-                
-                <Typography 
-                  variant="h6" 
-                  component="div" 
+
+                <Typography
+                  variant="h6"
+                  component="div"
                   onClick={() => navigate('/')}
-                  sx={{ 
+                  sx={{
                     color: trigger || isMobile ? 'white' : 'black',
                     fontWeight: 'bold',
                     fontSize: '1.2rem',
@@ -170,9 +168,8 @@ const Navbar = () => {
                   SWEEKAR
                 </Typography>
 
-                {/* Auth buttons for mobile */}
                 {!user?.id && (
-                  <Button 
+                  <Button
                     variant="contained"
                     onClick={() => navigate('/login')}
                     sx={{
@@ -188,14 +185,12 @@ const Navbar = () => {
                 )}
               </>
             ) : (
-              // Desktop Layout
               <>
-                {/* Logo */}
-                <Typography 
-                  variant="h6" 
-                  component="div" 
+                <Typography
+                  variant="h6"
+                  component="div"
                   onClick={() => navigate('/')}
-                  sx={{ 
+                  sx={{
                     cursor: 'pointer',
                     color: trigger ? 'white' : 'black',
                     fontWeight: 'bold',
@@ -206,9 +201,8 @@ const Navbar = () => {
                   SWEEKAR
                 </Typography>
 
-                {/* Navigation Items */}
-                <Box sx={{ 
-                  display: 'flex', 
+                <Box sx={{
+                  display: 'flex',
                   gap: 3,
                   mx: 4,
                   flexGrow: 1,
@@ -244,9 +238,8 @@ const Navbar = () => {
                   ))}
                 </Box>
 
-                {/* Auth Section */}
-                <Box sx={{ 
-                  display: 'flex', 
+                <Box sx={{
+                  display: 'flex',
                   gap: 2,
                   alignItems: 'center',
                   justifyContent: 'flex-end',
@@ -254,9 +247,9 @@ const Navbar = () => {
                 }}>
                   {user?.id ? (
                     <>
-                      <Button 
+                      <Button
                         onClick={() => navigate('/consultations')}
-                        sx={{ 
+                        sx={{
                           color: trigger ? 'white' : 'black',
                           textTransform: 'none',
                         }}
@@ -269,7 +262,7 @@ const Navbar = () => {
                         sx={{ color: trigger ? 'white' : 'black' }}
                       >
                         {user.profile_picture ? (
-                          <Avatar 
+                          <Avatar
                             src={user.profile_picture}
                             sx={{ width: 32, height: 32 }}
                           />
@@ -304,7 +297,7 @@ const Navbar = () => {
                     </>
                   ) : (
                     <>
-                      <Button 
+                      <Button
                         variant="text"
                         onClick={() => navigate('/login')}
                         sx={{
@@ -316,7 +309,7 @@ const Navbar = () => {
                       >
                         Login
                       </Button>
-                      <Button 
+                      <Button
                         variant="contained"
                         onClick={() => navigate('/register')}
                         sx={{
@@ -338,7 +331,6 @@ const Navbar = () => {
         </Container>
       </AppBar>
 
-      {/* Mobile Drawer - Update menu items */}
       <Drawer
         variant="temporary"
         anchor="left"
@@ -356,8 +348,8 @@ const Navbar = () => {
           </Box>
           <List>
             {navItems.map((item) => (
-              <ListItem 
-                button 
+              <ListItem
+                button
                 key={item.label}
                 onClick={() => {
                   navigate(item.path);
@@ -365,9 +357,9 @@ const Navbar = () => {
                 }}
                 sx={{ py: 1.5 }}
               >
-                <ListItemText 
-                  primary={item.label} 
-                  sx={{ 
+                <ListItemText
+                  primary={item.label}
+                  sx={{
                     '& .MuiListItemText-primary': {
                       fontSize: '1.1rem',
                       fontWeight: 500,
@@ -380,12 +372,11 @@ const Navbar = () => {
         </Box>
       </Drawer>
 
-      {/* Toolbar spacer */}
-      <Toolbar 
-        sx={{ 
+      <Toolbar
+        sx={{
           minHeight: trigger ? '64px !important' : '80px !important',
           transition: 'all 0.3s ease-in-out',
-        }} 
+        }}
       />
     </>
   );

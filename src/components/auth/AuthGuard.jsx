@@ -1,7 +1,6 @@
-// src/components/auth/AuthGuard.jsx
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import * as jwtDecode from 'jwt-decode'; // Change the import to use namespace import
+import * as jwtDecode from 'jwt-decode';
 
 const AuthGuard = ({ children, userType }) => {
   const [isAuthorized, setIsAuthorized] = useState(null);
@@ -16,7 +15,7 @@ const AuthGuard = ({ children, userType }) => {
     }
 
     try {
-      const decodedToken = jwtDecode.jwtDecode(token); // Use the named import
+      const decodedToken = jwtDecode.jwtDecode(token);
       const isTokenValid = decodedToken.exp * 1000 > Date.now();
       const hasCorrectUserType = user.user_type === userType;
 
@@ -27,7 +26,7 @@ const AuthGuard = ({ children, userType }) => {
   }, [userType]);
 
   if (isAuthorized === null) {
-    return null; // or a loading spinner
+    return null;
   }
 
   return isAuthorized ? children : <Navigate to="/login" />;
