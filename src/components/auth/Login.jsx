@@ -1,4 +1,3 @@
-// src/components/auth/Login.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -33,7 +32,6 @@ import {
 } from '@mui/icons-material';
 import api from '../../services/axios';
 
-// Forgot Password Dialog Component
 const ForgotPasswordDialog = ({ open, onClose }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -44,7 +42,7 @@ const ForgotPasswordDialog = ({ open, onClose }) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
       await api.post('/users/reset-password/', { email });
       setSuccess('Password reset instructions have been sent to your email.');
@@ -94,7 +92,6 @@ const ForgotPasswordDialog = ({ open, onClose }) => {
   );
 };
 
-// OTP Verification Dialog Component
 const OTPVerificationDialog = ({ open, onClose, phone, onVerificationComplete }) => {
   const [otp, setOTP] = useState('');
   const [error, setError] = useState('');
@@ -138,13 +135,12 @@ const OTPVerificationDialog = ({ open, onClose, phone, onVerificationComplete })
   );
 };
 
-// Main Login Component
 const Login = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  
-  const [loginMethod, setLoginMethod] = useState('password'); // 'password' or 'otp'
+
+  const [loginMethod, setLoginMethod] = useState('password');
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -168,7 +164,7 @@ const Login = () => {
       const response = await api.post('/users/login/', formData);
       localStorage.setItem('token', response.data.tokens.access);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      
+
       if (response.data.user.user_type === 'CLIENT') {
         navigate('/client/dashboard');
       } else {
@@ -192,7 +188,7 @@ const Login = () => {
   const handleOTPVerificationComplete = (data) => {
     localStorage.setItem('token', data.tokens.access);
     localStorage.setItem('user', JSON.stringify(data.user));
-    
+
     if (data.user.user_type === 'CLIENT') {
       navigate('/client/dashboard');
     } else {
@@ -223,7 +219,7 @@ const Login = () => {
                     Sign in to access your account
                   </Typography>
                   <Typography variant="body1" sx={{ opacity: 0.8 }}>
-                    Don't have an account?
+                    Don&apos;t have an account?
                   </Typography>
                   <Button
                     variant="outlined"
